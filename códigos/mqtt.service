@@ -1,0 +1,14 @@
+# Description: Custom Service Unit file
+[Unit]
+Description="MQTT Server"
+Requires=display-manager.service
+After=display-manager.service
+
+[Service]
+ExecStart=/usr/bin/python3 /etc/mosquitto/get_MQTT_data.py
+ExecStop=/usr/bin/killall get_MQTT_data.py
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
