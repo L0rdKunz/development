@@ -9,12 +9,12 @@ file_path = '/etc/mosquitto/teste.txt'
 
 
 def on_connect(client, userdata, flags, rc):
-    """ The callback for when the client receives a CONNACK response from the server."""
+    """ Busca dados vindos do servidor."""
    # print('Connected with result code ' + str(rc))
     client.subscribe(MQTT_TOPIC)
 
 def on_message(client, userdata, msg):
-    """The callback for when a PUBLISH message is received from the server."""
+    """Printa dados vindo do servidor."""
     data=(msg.topic + ' ' + str(msg.payload))
     f = open(file_path, 'w')
     print(data, file=f)
